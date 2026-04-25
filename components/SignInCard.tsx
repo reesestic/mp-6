@@ -1,6 +1,7 @@
 import { signIn } from "@/auth";
 import styled from "styled-components";
 
+// Styled sign in component
 export default function SignInCard() {
     return (
         <Page>
@@ -8,10 +9,14 @@ export default function SignInCard() {
                 <h1>OAuth Verification Using GitHub</h1>
                 <p>Sign in with your GitHub to view your profile!</p>
 
+                {/*triggers GitHub auth, redirects to /profile after login, uses server*/}
+                {/*buit in Auth.js functionality, i just found docs and used it*/}
                 <form
                     action={async () => {
                         "use server";
-                        await signIn("github");
+                        await signIn("github", {
+                            redirectTo: "/profile",
+                        });
                     }}
                 >
                     <Button type="submit">Sign in</Button>
@@ -20,8 +25,7 @@ export default function SignInCard() {
         </Page>
     );
 }
-
-// Styling for styled components
+// Styled parts
 
 const Page = styled.main`
     min-height: 100vh;
@@ -55,7 +59,6 @@ const Button = styled.button`
     border: none;
     color: white;
     cursor: pointer;
-    font-size: 16px;
 
     &:hover {
         opacity: 0.9;

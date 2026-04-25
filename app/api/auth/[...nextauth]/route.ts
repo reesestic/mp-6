@@ -1,2 +1,6 @@
-import { handlers } from "@/auth" // Referring to the auth.ts we just created
+// app/api/auth/[...nextauth]/route.ts
+// file given by auth.js documentation, i copied the format
+
+import { handlers } from "@/auth"
+
 export const { GET, POST } = handlers
